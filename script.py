@@ -14,8 +14,23 @@ def valid_bits(bits):
     return True
 
 def analyze():
-    # create probability array/list
-    print bits_list
+    zerocount = [0, 0, 0, 0]
+    length = len(bits_list)
+
+    if length == 0:
+        print 'pybot needs more sample data, nom nom'
+        return
+
+    for x in bits_list:
+        for idx, val in enumerate(list(x)):
+            if val == '0':
+                zerocount[idx] += 1
+
+    nextoutput = ''
+    for x in zerocount:
+        nextoutput += '0' if x / float(length) >= .5 else '1'
+
+    print 'your next output will most likely be', nextoutput
 
 banner =  '-------------------------------------------------\n'
 banner += '-- Type analyze to predict the next four bits  --\n'
